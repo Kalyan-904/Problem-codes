@@ -1,0 +1,74 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    // TreeNode class
+    public static class TreeNode{
+        int data;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int data){
+            this.data = data;
+            this.left = this.right = null;
+        }
+    }
+
+    static TreeNode root = null;
+    // Construction of BST
+    public static TreeNode insert(TreeNode root, int value){
+        if(root == null){
+            root = new TreeNode(value);
+            return root;
+        }
+
+        if(root.data > value){
+            root.left = insert(root.left, value);
+        }else{
+            root.right = insert(root.right,value);
+        }
+        return root;
+    }
+    // Wrapper class of Insertion into Tree
+    public static void insertIntoTree(int data){
+        root = insert(root,data);
+    }
+    // Searching for a value in BST
+    public static TreeNode search(TreeNode root, int data){
+        if(root == null || root.data == data){
+            return root;
+        }
+        if(root.data > data){
+            return search(root.left,data);
+        }else{
+            return search(root.right, data);
+        }
+    }
+    // wrapper class of search a value
+    public static TreeNode searchTree(int data){
+        return search(root,data);
+    }
+    
+    // Wrapper class of PreOrder Traversal
+    // public static void preOrderTraversal(){
+    //     preOrder(root);
+    // } 
+
+    // Driver code
+    public static void main(String args[]) {
+        // your code here
+        Main ob = new Main();
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        int x = sc.nextInt();
+        for(int i=0;i<n;i++){
+            int num = sc.nextInt();
+            ob.insertIntoTree(num);
+        }
+
+        if(ob.searchTree(x) != null){
+            System.out.println("YES");
+        }else{
+            System.out.println("NO");
+        }
+    }
+}
