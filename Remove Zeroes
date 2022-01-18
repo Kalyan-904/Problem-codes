@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        String s ;
+
+        for(int i=0;i<n;i++){
+            s = scan.next();
+            int firstIndex = -1;
+            for(int a=0;a<s.length();a++){
+                if(s.charAt(a) == '1'){
+                    firstIndex = a;
+                    break;
+                }
+            }
+
+            int lastIndex = -1;
+            for(int b=s.length()-1;b>=0;b--){
+                if(s.charAt(b) == '1'){
+                    lastIndex = b;
+                    break;
+                }
+            }
+
+            int ans = 0;
+            if(firstIndex == -1){
+                System.out.println(ans);
+            }
+            else{
+                for(int x=firstIndex;x<=lastIndex;x++){
+                    if(s.charAt(x) == '0'){
+                        ans++;
+                    }
+                }
+                System.out.println(ans);
+            }
+        }
+    }
+}
