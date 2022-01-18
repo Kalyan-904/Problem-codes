@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static int spare(int n){
+        int count = 0;
+        while(n!=0){
+            int r = n%2;
+            if(r==1)
+                count++;
+            else
+                count = 0;
+            if(count == 2){
+                return 0;
+            }
+             n = n/2;
+        }
+        return 1;
+    }
+    public static void main(String args[]) {
+        // your code here
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        System.out.println(spare(n));
+    }
+}
