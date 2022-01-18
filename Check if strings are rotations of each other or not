@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static int stringCheck(String str1, String str2){
+        if(str1.length() != str2.length())
+            return 0;
+
+        String newStr = str1+str1;
+        if(newStr.contains(str2))
+            return 1;
+        else
+            return 0;
+
+    }
+    public static void main(String args[]) {
+        // your code here
+        Scanner sc = new Scanner(System.in);
+        String str1 = sc.next();
+        String str2 = sc.next();
+        System.out.println(stringCheck(str1,str2));
+    }
+}
