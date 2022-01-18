@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void findNextGreaterElements(int[] input)
+    {
+        // base case
+        if (input == null) {
+            return ;
+        }
+ 
+        int n = input.length;
+        int[] result = new int[n];
+        Arrays.fill(result, -1);
+ 
+        // create an empty stack
+        Stack<Integer> s = new Stack<>();
+ 
+        // process each element from right to left
+        for (int i = n - 1; i >= 0; i--)
+        {
+            // loop till we have a greater element on top or stack becomes empty.
+            while (!s.empty())
+            {
+                // pop elements that aren't greater than the current element
+                if (s.peek() <= input[i]) {
+                    s.pop();
+                }
+                // the next greater element is now on the top of the stack
+                else {
+                    result[i] = s.peek();
+                    break;
+                }
+            }
+ 
+            // push current element into the stack
+            s.push(input[i]);
+        }
+ 
+        for(int i=0;i<n;i++){
+            System.out.print(result[i]+" ");
+        }
+        return;
+    }
+    public static void main(String args[]) {
+        // your code here
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        //int ans[] = new int[n];
+        for(int i=0;i<n;i++){
+            arr[i] = sc.nextInt();
+            //ans[i] = -1;
+        }
+        findNextGreaterElements(arr);
+    }
+}
