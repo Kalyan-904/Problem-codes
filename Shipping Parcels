@@ -1,0 +1,56 @@
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String args[]) {
+        //your code here
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int d = sc.nextInt();
+        int weight[] = new int[n];
+        for(int i=0;i<n;i++){
+            weight[i] = sc.nextInt();
+        }
+
+        System.out.println(shipWithinDays(weight,d));
+    }
+
+    public static int shipWithinDays(int[] weights, int days) {
+        int max= Integer.MIN_VALUE;
+        int sum =0;
+        for(int i : weights){
+            if(i>max){
+                max=i;
+            }
+            sum+=i;
+        }
+        
+        int left=max, right=sum, mid;
+        
+        while(left<=right){
+            mid = left + (right-left)/2;
+            int daysDone =0;
+            int totalWeight =0;
+            
+            for(int w:weights){
+                if(totalWeight+w>mid){
+                    daysDone++;
+                    totalWeight=0;
+                }
+                totalWeight+=w;
+            }
+            if(totalWeight<=mid){
+                daysDone++;
+            }
+            if(daysDone >days){
+                left=mid+1;
+            }
+            else{
+                right=mid-1;
+            }
+        }
+        
+        return left;
+    }
+}
