@@ -1,0 +1,48 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static int removeDuplicates(int[] price, int n){
+        int temp[] = new int[n];
+        int j = 0;
+        for(int i=0;i<n-1;i++){
+            if(price[i] != price[i+1]){
+                temp[j++]= price[i];
+                //j++;
+            }
+        }
+        temp[j++] = price[n-1];
+
+        for(int i=0;i<j;i++){
+            price[i] = temp[i];
+        }
+
+        return j;
+        
+    }
+
+
+    public static void main(String args[]) {
+        // your code here
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int[] price = new int[n];
+
+        for(int i=0;i<n;i++){
+            price[i] = sc.nextInt();
+        }
+
+        Arrays.sort(price);
+        int length = removeDuplicates(price,n);
+        int count = 0;
+        for(int i=0;i<length;i++){
+            if(k>0){
+                if(k>=price[i]){
+                    k = k-price[i];
+                    count++;
+                }
+            }
+        }
+        System.out.println(count);
+    }
+}
