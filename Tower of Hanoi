@@ -1,0 +1,19 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void towerOfHanoi(int n, String A,String B,String C){
+        if(n==0){
+            return;
+        }
+        towerOfHanoi(n-1,A,C,B);
+        System.out.println(A+"->"+C);
+        towerOfHanoi(n-1,B,A,C);
+        return;
+    }
+    public static void main(String args[]) {
+        // your code here
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        towerOfHanoi(n,"A","B","C");
+    }
+}
