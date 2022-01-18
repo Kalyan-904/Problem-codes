@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static int firstSet(int n){
+        int pos = 1;
+        while(n!= 0){
+            int r = n % 2;
+            if( r == 1)
+                return pos;
+            else
+                pos++;
+            n = n >> 1;
+        }
+        return pos;
+    }
+    public static void main(String args[]) {
+        // your code here
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        System.out.println(firstSet(n));
+    }
+}
