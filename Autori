@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner scan = new Scanner(System.in);
+        String instr = scan.next();
+
+        String opstr = "";
+        String str = "";
+
+        for(int i=0;i<instr.length();i++){
+            if(instr.charAt(i) == '-' && str != ""){
+                opstr += str.charAt(0);
+                str = "";
+            }
+            else{
+                str += instr.charAt(i);
+            }
+        }
+        if(str != ""){
+            opstr += str.charAt(0);
+        }
+        System.out.println(opstr);
+    }
+}
