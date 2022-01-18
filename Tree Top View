@@ -1,0 +1,89 @@
+import java.io.*;
+import java.util.*;
+
+// TreeNode class
+class TreeNode{
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(){}
+    TreeNode(int data){
+        this.val = data;
+        this.left = this.right = null;
+    }
+    TreeNode(int data, TreeNode left, TreeNode right){
+        this.val = data;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+public class Main {
+    public static TreeNode insert(TreeNode root,int x){
+        if(root == null){
+            return new TreeNode(x);
+        }
+        if(root.val > x){
+            root.left = insert(root.left,x);
+        }else{
+            root.right = insert(root.right,x);
+        }
+        return root;
+    }
+
+    static TreeMap<Integer,ArrayList<Integer>> m;
+    public static void recur(TreeNode root, int d, int w){
+        if(root == null){
+            return;
+        }
+
+        if(m.containsKey(w) == true){
+            ArrayList<Integer> cur = m.get(w);
+            if(d<cur.get(1)){
+                m.get(w).clear();
+                m.get(w).add(root.val);
+                m.get(w).add(d);
+            }
+        }else{
+            ArrayList<Integer> cur = new ArrayList<>();
+            cur.add(root.val);
+            cur.add(d);
+
+            m.put(w,cur);
+        }
+
+        recur(root.left,d+1,w-1);
+        recur(root.right,d+1,w+1);
+    }
+
+    public static ArrayList<Integer> topView(TreeNode root){
+        m = new TreeMap<>();
+
+        recur(root,0,0);
+        ArrayList<Integer> ans = new ArrayList<>();
+
+        for(ArrayList<Integer> cur : m.values()){
+            ans.add(cur.get(0));
+        }
+        return ans;
+    }
+
+
+    // Driver code
+    public static void main(String args[]) {
+        // your code here
+        Scanner sc = new Scanner(System.in);
+        TreeNode root = null;
+        int n = sc.nextInt();
+        for(int i=0;i<n;i++){
+            int x = sc.nextInt();
+            root = insert(root,x);
+        }
+
+        ArrayList<Integer> ans = topView(root);
+
+        for(int i=0;i<ans.size();i++){
+            System.out.print(ans.get(i)+" ");
+        }
+    }
+}
