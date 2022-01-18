@@ -1,0 +1,68 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        // your code here
+        Scanner sc = new Scanner(System.in);
+        int m = sc.nextInt();
+        int n = sc.nextInt();
+        LinkedList l1 = new LinkedList();
+        for (int i =0; i<m;i++){
+            int a = sc.nextInt();
+            l1.addLast(a);
+        }
+        LinkedList l2 = new LinkedList();
+        for (int i =0; i<n;i++){
+            int a = sc.nextInt();
+            l2.addLast(a);
+        }
+        LinkedList.compareTo(l1, l2);
+
+    }
+
+}
+class LinkedList {
+    private class Node {
+        int data;
+        Node next;
+    }
+    private Node head;
+    public void addLast(int x){
+        Node nn = new Node();
+        nn.data = x;
+        if (head ==null){
+            head = nn;
+            return;
+        }
+        Node temp = head;
+        while (temp.next!=null){
+            temp = temp.next;
+        }
+        temp.next = nn;
+
+    }
+    public void print(){
+        Node temp = head;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp = temp.next;
+        }
+    }
+    public static void compareTo(LinkedList l1, LinkedList l2){
+        Node temp1 = l1.head;
+        Node temp2 = l2.head;
+
+        while(temp1 != null && temp2 != null){
+            if (temp1.data != temp2.data){
+                break;
+            }
+            temp1 = temp1.next;
+            temp2 = temp2.next;
+        }
+        if (temp1 == temp2){
+            System.out.print(1);
+            return;
+        }
+        System.out.print(0);
+    }
+}
