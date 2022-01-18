@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        String Adrian = "ABC";
+        String Bruno = "BABC";
+        String Goran = "CCAABB";
+
+        int aScore = 0;
+        int bScore = 0;
+        int gScore = 0;
+
+        Scanner scan = new Scanner(System.in);
+        int N = scan.nextInt();
+        
+
+        while(Adrian.length()<N){
+            Adrian += "ABC";
+        }
+        while(Bruno.length()<N){
+            Bruno += "BABC";
+        }
+        while(Goran.length()<N){
+            Goran += "CCAABB";
+        }
+        String ans = scan.next();
+        for(int i=0;i<N;i++){
+            if(ans.charAt(i) ==  Adrian.charAt(i)){
+                aScore++;
+            }
+            if(ans.charAt(i) ==  Bruno.charAt(i)){
+                bScore++;
+            }
+            if(ans.charAt(i) ==  Goran.charAt(i)){
+                gScore++;
+            }
+        }
+        int maxScore = Math.max(aScore,Math.max(bScore,gScore));
+        System.out.println(maxScore);
+        if(aScore == maxScore){
+            System.out.println("Adrian");
+        }
+        if(bScore == maxScore){
+            System.out.println("Bruno");
+        }
+        if(gScore == maxScore){
+            System.out.println("Goran");
+        }
+    }
+}
