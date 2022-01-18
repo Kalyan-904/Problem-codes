@@ -1,0 +1,61 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    // TreeNode class
+    public static class TreeNode{
+        int data;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int data){
+            this.data = data;
+            this.left = this.right = null;
+        }
+    }
+
+    static TreeNode root = null;
+    // Construction of BST
+    public static TreeNode insert(TreeNode root, int value){
+        if(root == null){
+            root = new TreeNode(value);
+            return root;
+        }
+
+        if(root.data > value){
+            root.left = insert(root.left, value);
+        }else{
+            root.right = insert(root.right,value);
+        }
+        return root;
+    }
+    // PreOrder method
+    public static void preOrder(TreeNode root){
+        if(root == null){
+            return;
+        }
+        System.out.print(root.data+" ");
+        preOrder(root.left);
+        preOrder(root.right);
+    } 
+    // Wrapper class of Insertion into Tree
+    public static void insertIntoTree(int data){
+        root = insert(root,data);
+    }
+    // Wrapper class of PreOrder Traversal
+    public static void preOrderTraversal(){
+        preOrder(root);
+    } 
+
+    // Driver code
+    public static void main(String args[]) {
+        // your code here
+        Main ob = new Main();
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        for(int i=0;i<n;i++){
+            int num = sc.nextInt();
+            ob.insertIntoTree(num);
+        }
+
+        ob.preOrderTraversal();
+    }
+}
