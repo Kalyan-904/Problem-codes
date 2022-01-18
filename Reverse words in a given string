@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+import java.util.regex.Pattern;
+public class Main {
+    public static void rev(String arr[]){
+        int n = arr.length;
+        String res ="";
+        for(int i=n-1;i>=0;i--){
+            if(i != 0){
+                res += arr[i]+".";
+            }else{
+                res += arr[i];
+            }
+        }
+        System.out.println(res);
+        return;
+    }
+    public static void main(String args[]) {
+        // your code here
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        String arr[] = s.split(Pattern.quote("."));
+        rev(arr);
+    }
+}
