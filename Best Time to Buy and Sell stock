@@ -1,0 +1,36 @@
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String args[]) {
+        //your code here
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        for(int i=0;i<n;i++){
+            arr[i] = sc.nextInt();
+        }
+
+        int profit = 0;
+        int maxEle = 0;
+        int temp[] = new int[n];
+        for(int i=n-1;i>=0;i--){
+            if(maxEle == 0){
+                maxEle = arr[i];
+                temp[i] = maxEle;
+            } 
+            else if(temp[i+1]<arr[i]){
+                temp[i] = arr[i];
+            }
+            else if(temp[i+1]>arr[i]){
+                temp[i] = temp[i+1];
+            }
+        }
+
+        for(int i=0;i<n;i++){
+            profit = Math.max(profit,temp[i]-arr[i]);
+        }
+        System.out.println(profit);
+    }
+}
